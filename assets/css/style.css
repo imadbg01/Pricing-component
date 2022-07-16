@@ -81,7 +81,7 @@ header {
   flex-direction: column;
   padding-block: 2rem;
   gap: 1.5rem;
-  margin-block-end: 2rem;
+  margin-block: 2rem;
 }
 
 header > h1 {
