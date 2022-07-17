@@ -1,29 +1,39 @@
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-
+/*----------------------------
+	Google Font
+----------------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-
+/*----------------------------
+	Custom Properties
+----------------------------*/
 :root {
-  --VeryLightGrayishBlue: hsl(240, 78%, 98%);
-  --LightGrayishBlue: hsl(234, 14%, 74%);
-  --GrayishBlue: hsl(233, 13%, 49%);
-  --DarkGrayishBlue: hsl(232, 13%, 33%);
-  --white: hsl(0, 100%, 100%);
-  --primary-gradient: to right, hsl(236, 72%, 79%), hsl(237, 63%, 64%);
+  /* color */
+  --brand-100: hsl(236, 72%, 79%);
+  --brand-200: hsl(237, 63%, 64%);
+  --brand-300: hsl(228, 45%, 44%);
+
+  --white: hsl(100, 0%, 100%);
+  --grey-100: hsl(240, 78%, 98%);
+  --grey-200: hsl(234, 14%, 74%);
+  --grey-300: hsl(233, 13%, 49%);
+  --grey-400: hsl(232, 13%, 33%);
+
+  --gradient: linear-gradient(
+    to bottom right,
+    var(--brand-100),
+    var(--brand-200)
+  );
+  --gradient-hover: linear-gradient(
+    to bottom right,
+    var(--brand-200),
+    var(--brand-300)
+  );
+
+  --border: 0.1rem solid var(--grey-200);
 }
-
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-
+/*----------------------------
+	general reset
+----------------------------*/
 *,
 *::before,
 *::after {
@@ -46,128 +56,190 @@ ul {
 a {
   text-decoration: none;
 }
-
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-
+/*----------------------------
+	Setup body
+----------------------------*/
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  min-height: 100vh;
-  padding-block-start: 2rem;
-  padding-block-end: 5rem;
+  min-height: calc(100vh - 2rem);
+  padding-block: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  color: var(--DarkGrayishBlue);
+  color: var(--grey-300);
   flex-direction: column;
-  background-color: var(--VeryLightGrayishBlue);
+  background-color: var(--grey-100);
   background-image: url(../images/bg-bottom.svg), url(../images/bg-top.svg);
   background-position: left bottom, 190% top;
   background-repeat: no-repeat;
 }
 
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
+/* Hiding class, making content visible only to screen readers but not visually */
+/* "sr" meaning "screen-reader" */
 
-header {
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+/*----------------------------
+	Component
+----------------------------*/
+.primary-header {
   width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-block: 2rem;
-  gap: 1.5rem;
-  margin-block: 2rem;
+  padding-block: 1.5rem;
+  gap: 1rem;
 }
 
 header > h1 {
-  font-size: clamp(1.2rem, 3vw + 1rem, 3rem);
+  font-size: clamp(1.1rem, 5vw + 1rem, 2.5rem);
 }
-header > div {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
+
+/*----------------------------
+	Toggle control
+----------------------------*/
+/* For more like this, see: https://github.com/scottaohara/a11y_styled_form_controls */
+
+.radio-switch {
+  --knob-padding: 0.125rem;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  font-size: 0.825rem;
+  margin: 2rem auto;
 }
-.switch {
+
+radio-switch__inner {
+  display: inline-block;
+  position: relative;
+}
+
+.radio-switch__label {
   position: relative;
   display: inline-block;
-  width: 4.15rem;
-  height: 1.9rem;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
+  line-height: 2;
+  z-index: 2;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--LightGrayishBlue);
-  -webkit-transition: 450ms;
-  transition: 450ms;
 }
 
-.slider:before {
+.radio-switch input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
   position: absolute;
+  appearance: none;
+  background: none;
+  opacity: 0.000001;
+  margin: 0;
+  height: 100%;
+  width: 30%;
+  z-index: 3;
+  top: 0;
+}
+
+.radio-switch input:first-of-type {
+  left: 0;
+}
+
+.radio-switch input:last-of-type {
+  right: 0;
+}
+
+.radio-switch input:not(:checked):hover + label {
+  text-decoration: underline;
+}
+
+.radio-switch label:first-of-type {
+  padding-right: 5em;
+}
+
+.radio-switch label:last-child {
+  padding-left: 5em;
+  margin-left: -4.25em;
+}
+
+.radio-switch:focus-within label:first-of-type::after {
+  box-shadow: 0 0 0 0.125rem var(--white), 0 0 0 0.25rem var(--grey-200);
+}
+
+.radio-switch label:first-of-type::after,
+.radio-switch label:first-of-type::before {
   content: "";
-  height: 1.55rem;
-  width: 1.7rem;
-  left: 0.25rem;
-  bottom: 0.25rem;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  height: 2em;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  vertical-align: middle;
 }
 
-input:checked + .slider {
-  background-image: linear-gradient(var(--primary-gradient));
+.radio-switch label:first-of-type::before {
+  /* content: ""; */
+  position: absolute;
+  right: var(--knob-padding);
+  top: var(--knob-padding);
+  height: calc(2em - (2 * var(--knob-padding)));
+  width: calc(2em - (2 * var(--knob-padding)));
+  background-color: var(--white);
+  border-radius: 100%;
+  transition: right 300ms ease-in-out;
+  z-index: 2;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 0.1rem var(--LightGrayishBlue);
+.radio-switch label:first-of-type::after {
+  background: var(--gradient);
+  border-radius: 1em;
+  margin: 0 1em;
+  width: 4em;
+  transition: background 300ms ease-in-out;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(1.7rem);
-  -ms-transform: translateX(1.7rem);
-  transform: translateX(1.7rem);
+.radio-switch input:first-of-type:checked ~ label:first-of-type::before {
+  right: calc(2em + var(--knob-padding));
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 2rem;
+.radio-switch input:last-of-type:checked ~ label:last-of-type {
+  z-index: 1;
 }
 
-.slider.round:before {
-  border-radius: 50%;
+/* 
+	*	ACCESSIBILITY extra: High Contrast Mode
+	* 'color in' the switch knob in high contrast mode by giving it a large border:
+*/
+@media screen and (-ms-high-contrast: active) {
+  .radio-switch label:first-of-type:before {
+    background-color: windowText;
+    border: 1em solid transparent;
+    /* firefox doesn't respect the bg color,
+				so the border fills the knob */
+  }
+  .radio-switch:focus-within label:first-of-type:after {
+    outline: 2px solid;
+    outline-offset: 3px;
+  }
 }
 
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-
+/*----------------------------
+	Pricing options container
+----------------------------*/
 main {
   display: grid;
   grid-template-columns: 1fr;
-  min-height: 75vh;
   width: 80%;
   max-width: 75rem;
   gap: 1.5rem;
+  flex-grow: 1;
 }
 
-main > section {
+.package {
   background-color: var(--white);
   padding: 1.5rem;
   display: flex;
@@ -175,17 +247,22 @@ main > section {
   align-items: center;
   justify-content: space-around;
   text-align: center;
-  gap: 1rem;
+  gap: 1.4rem;
   border-radius: 1rem;
   box-shadow: 0 0 0.5rem 0.1rem hsla(234, 14%, 74%, 0.555);
 }
 
-main > section h2 {
+.package:nth-child(2) {
+  background: var(--gradient);
+  color: var(--white);
+}
+
+.package__type {
   color: var(--GrayishBlue);
   font-size: 0.85rem;
 }
 
-main > section h2 span {
+.package__price span {
   display: none;
   color: var(--DarkGrayishBlue);
   font-size: clamp(1.1rem, 5vw + 1rem, 1.9rem);
@@ -193,16 +270,17 @@ main > section h2 span {
   margin-block: 1rem;
   transform: scale(0);
   visibility: hidden;
+  transition: all 200ms ease-in-out;
 }
 
-main > section h2 span[data-show="true"] {
+.package__price span[data-show="true"] {
   transform: scale(1);
   font-size: clamp(1.6rem, 5vw + 1rem, 2.5rem);
   visibility: visible;
   display: block;
 }
 
-main > section ul {
+.package__features {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -210,7 +288,7 @@ main > section ul {
   width: 100%;
 }
 
-main > section ul li {
+.package__features li {
   padding-block: 1.3rem;
   width: 90%;
   border-top-width: 0.1rem;
@@ -219,19 +297,6 @@ main > section ul li {
   border-bottom-color: var(--LightGrayishBlue);
   border-top-style: solid;
   border-bottom-style: solid;
-}
-
-main > section:nth-child(2) {
-  background-image: linear-gradient(var(--primary-gradient));
-  color: var(--VeryLightGrayishBlue);
-  transform: scale(1);
-}
-
-main > section:nth-child(2) h2 {
-  color: var(--LightGrayishBlue);
-}
-main > section:nth-child(2) h2 span {
-  color: var(--VeryLightGrayishBlue);
 }
 
 .btn {
@@ -243,35 +308,27 @@ main > section:nth-child(2) h2 span {
   width: 80%;
   border-radius: 0.75rem;
   font-size: 1rem;
-  color: var(--VeryLightGrayishBlue);
+  color: var(--grey-100);
   font-weight: 500;
-  background-image: linear-gradient(var(--primary-gradient));
-  transition: all 400ms ease-in-out;
+  background-image: var(--gradient);
+  transition: all 300ms ease-in-out;
 }
 
 .btn:hover {
-  background: none;
-  color: var(--DarkGrayishBlue);
-  outline-color: var(--DarkGrayishBlue);
+  background-color: var(--grey-100);
+  background-image: none;
+  color: var(--brand-300);
+  outline: 1px solid var(--brand-300);
 }
 
-main > section:nth-child(2) .btn {
-  background-image: linear-gradient(
-    to right,
-    var(--white),
-    var(--VeryLightGrayishBlue)
-  );
-  color: var(--DarkGrayishBlue);
-}
-main > section:nth-child(2) .btn:hover {
-  background: transparent;
-  color: var(--VeryLightGrayishBlue);
-  outline-color: var(--VeryLightGrayishBlue);
+.btn--inverted {
+  outline: 1px solid var(--white);
 }
 
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
+.btn--inverted:hover {
+  background: var(--gradient-hover);
+  color: var(--white);
+}
 
 footer {
   visibility: hidden;
@@ -279,12 +336,10 @@ footer {
 .att {
   display: none;
 }
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
-/*  ()()()()()()()()()()()()()()()()()()()()()()(()()()()()()()() */
+
+/*----------------------------
+	Break Point
+----------------------------*/
 
 @media (min-width: 45rem) {
   body {
@@ -294,7 +349,7 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     gap: 0.3rem;
   }
-  main > section:nth-child(2) {
+  .package:nth-child(2) {
     transform: scale(1.1);
   }
 
@@ -306,8 +361,8 @@ footer {
     right: 1rem;
     height: 100%;
     width: 5rem;
-    background-image: linear-gradient(var(--primary-gradient));
-    color: var(--VeryLightGrayishBlue);
+    background-image: var(--gradient);
+    color: var(--grey-100);
     writing-mode: vertical-lr;
     display: flex;
     justify-content: center;
@@ -317,6 +372,7 @@ footer {
     gap: 1rem;
     transform: translateY(-120%);
     transition: transform 700ms ease-in-out;
+    z-index: 101;
   }
 
   footer a {
@@ -334,13 +390,14 @@ footer {
     cursor: pointer;
     bottom: 1rem;
     left: 1rem;
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50%;
     background-image: url(../images/logo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     cursor: pointer;
+    z-index: 101;
   }
 }
