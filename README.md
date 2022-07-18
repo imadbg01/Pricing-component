@@ -1,6 +1,8 @@
-# Frontend Mentor - Pricing component with toggle solution
-
-This is a solution to the [Pricing component with toggle challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/pricing-component-with-toggle-8vPwRMIC). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+<div align="center"> 
+<img src="./Screenshot.png" width="70%" />
+<h1>Frontend Mentor - Pricing component with toggle solution</h1>
+<p>This is a solution to the <a src="https://www.frontendmentor.io/challenges/pricing-component-with-toggle-8vPwRMIC">Pricing component with toggle challenge on Frontend Mentor </a> Frontend Mentor challenges help you improve your coding skills by building realistic projects. </p>
+</div>
 
 ## Table of contents
 
@@ -15,8 +17,6 @@ This is a solution to the [Pricing component with toggle challenge on Frontend M
   - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 

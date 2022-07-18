@@ -323,6 +323,8 @@ main {
 
 .btn--inverted {
   outline: 1px solid var(--white);
+  background: var(--white);
+  color: var(--brand-300);
 }
 
 .btn--inverted:hover {
